@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Привет, это Ама!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+<style>
+:root{
+  --radius:30px;
+}
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+font-family:'Inter',sans-serif;
+background:
+radial-gradient(circle at 20% 0%, rgba(255,255,255,.12), transparent 40%),
+radial-gradient(circle at 80% 10%, rgba(255,255,255,.08), transparent 45%),
+linear-gradient(180deg,#1a1a1a,#050505);
+color:#fff;
+}
+
+@media (prefers-color-scheme: light){
+body{
+background:
+radial-gradient(circle at 20% 0%, rgba(255,255,255,.8), transparent 40%),
+radial-gradient(circle at 80% 10%, rgba(255,255,255,.6), transparent 45%),
+linear-gradient(180deg,#f7f7f7,#e1e1e1);
+color:#111;
+}
+}
+
+.card{
+width:100%;
+max-width:420px;
+padding:30px 24px 26px;
+border-radius:var(--radius);
+background:
+linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.04));
+backdrop-filter:blur(36px) saturate(190%);
+-webkit-backdrop-filter:blur(36px) saturate(190%);
+box-shadow:
+0 60px 120px rgba(0,0,0,.45),
+inset 0 1px 0 rgba(255,255,255,.35);
+text-align:center;
+}
+
+@media (prefers-color-scheme: light){
+.card{
+background:
+linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.35));
+box-shadow:
+0 50px 110px rgba(0,0,0,.18),
+inset 0 1px 0 rgba(255,255,255,.6);
+}
+}
+
+h1{margin:0 0 26px;font-size:30px;font-weight:500}
+
+.lang{
+display:flex;
+justify-content:center;
+gap:8px;
+margin-bottom:38px;
+}
+.lang button{
+padding:6px 14px;
+border-radius:999px;
+border:none;
+background:rgba(255,255,255,.18);
+font-size:13px;
+font-weight:300;
+cursor:pointer;
+opacity:.55;
+}
+.lang button.active{opacity:1}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:16px;
+}
+
+.item a{
+text-decoration:none;
+color:inherit;
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.icon{
+width:68px;
+height:68px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:26px;
+margin-bottom:8px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(22px) saturate(160%);
+box-shadow:
+0 10px 30px rgba(0,0,0,.28),
+inset 0 1px 0 rgba(255,255,255,.35);
+transition:transform .25s;
+}
+
+.item a:hover .icon{transform:scale(1.06)}
+
+.phone{background:#2e7d32}
+.vk{background:#4c75a3}
+.instagram{background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af)}
+.telegram{background:#2aabee}
+.channel{background:#1f8acb}
+.mail{background:#8a7b45}
+
+.thanks{
+margin:28px auto 8px;
+}
+.thanks a{
+display:flex;
+gap:10px;
+align-items:center;
+justify-content:center;
+width:100%;
+max-width:320px;
+margin:0 auto;
+padding:14px 0;
+border-radius:999px;
+background:
+linear-gradient(180deg, rgba(255,255,255,.28), rgba(255,255,255,.12));
+backdrop-filter:blur(28px) saturate(180%);
+box-shadow:
+0 18px 40px rgba(0,0,0,.35),
+inset 0 1px 0 rgba(255,255,255,.45);
+text-decoration:none;
+color:inherit;
+font-size:18px;
+animation:breath 3.2s ease-in-out infinite;
+}
+
+.thanks i{color:#e53935}
+
+@keyframes breath{
+0%,100%{transform:scale(1)}
+50%{transform:scale(1.04)}
+}
+
+.save-contact{
+margin:14px 0 26px;
+font-size:13px;
+opacity:.32;
+text-align:center;
+}
+.save-contact a{
+color:inherit;
+text-decoration:none;
+background:none;
+border:none;
+outline:none;
+padding:0;
+}
+
+.divider{
+height:1px;
+background:linear-gradient(to right, transparent, rgba(255,255,255,.25), transparent);
+margin:14px 0 16px;
+}
+
+.footer{font-size:14px;opacity:.8}
+.note{margin-top:6px;font-size:14px;opacity:.7}
+</style>
+</head>
+
+<body>
+<div class="card">
+
+<h1 id="title">Привет, это Ама!</h1>
+
+<div class="lang">
+<button id="ruBtn" class="active" onclick="setLang('ru')">RU</button>
+<button id="enBtn" onclick="setLang('en')">EN</button>
+<button id="hyBtn" onclick="setLang('hy')">HY</button>
+</div>
+
+<div class="grid">
+<div class="item"><a href="tel:+79992557949"><div class="icon phone"><i class="fa-solid fa-phone"></i></div><span data-ru="Позвонить" data-en="Call" data-hy="Զանգել">Позвонить</span></a></div>
+<div class="item"><a href="https://vk.com/amakalipsis"><div class="icon vk"><i class="fa-brands fa-vk"></i></div><span data-ru="ВКонтакте" data-en="VK" data-hy="VK-ի էջը">ВКонтакте</span></a></div>
+<div class="item"><a href="https://instagram.com/amakalipsis"><div class="icon instagram"><i class="fa-brands fa-instagram"></i></div><span id="instaLabel">Instagram*</span></a></div>
+<div class="item"><a href="https://t.me/amakalipsis"><div class="icon telegram"><i class="fa-brands fa-telegram"></i></div><span data-ru="Телеграм" data-en="Telegram" data-hy="Տելեգրամ">Телеграм</span></a></div>
+<div class="item"><a href="https://t.me/invencia"><div class="icon channel"><i class="fa-regular fa-lightbulb"></i></div><span data-ru="Мой канал" data-en="My channel" data-hy="Իմ ալիքը">Мой канал</span></a></div>
+<div class="item"><a href="mailto:amastyle@amakalipsis.ru"><div class="icon mail"><i class="fa-solid fa-envelope"></i></div><span data-ru="Почта" data-en="Email" data-hy="Փոստ">Почта</span></a></div>
+</div>
+
+<div class="thanks">
+<a href="https://tips.yandex.ru/guest/payment/0667430">
+<i class="fa-solid fa-heart"></i>
+<span data-ru="Сказать спасибо" data-en="Say thanks" data-hy="Շնորհակալություն ասել">Сказать спасибо</span>
+</a>
+</div>
+
+<div class="save-contact">
+<a href="amakalipsis.vcf" download data-ru="сохранить контакты" data-en="save contact" data-hy="պահպանել կոնտակտը">сохранить контакты</a>
+</div>
+
+<div class="divider"></div>
+
+<div class="footer">
+<div id="instaNote">* Заблокирован на территории РФ</div>
+<div class="note" id="note"
+data-ru="В других сервисах меня можно найти по нику amakalipsis, не ищите меня в WhatsApp и Viber — там меня точно нет!"
+data-en="You can find me on other services under the nickname amakalipsis. Please don’t look for me on WhatsApp or Viber — I’m definitely not there."
+data-hy="Այլ ծառայություններում ինձ կարող եք գտնել amakalipsis մականունով։ Խնդրում եմ մի փնտրեք ինձ WhatsApp-ում և Viber-ում — այնտեղ ես հաստատ չկամ։">
+</div>
+</div>
+
+</div>
+
+<script>
+function setLang(l){
+localStorage.setItem('lang',l);
+document.querySelectorAll('.lang button').forEach(b=>b.classList.remove('active'));
+document.getElementById(l+'Btn').classList.add('active');
+document.querySelectorAll('[data-'+l+']').forEach(e=>e.textContent=e.dataset[l]);
+const titles={ru:"Привет, это Ама!",en:"Hi, this is Ama!",hy:"Բարև, ես Արմեանն եմ:"};
+document.getElementById('title').textContent=titles[l];
+const insta=document.getElementById('instaLabel');
+const instaNote=document.getElementById('instaNote');
+if(l==='ru'){insta.textContent="Instagram*";instaNote.style.display="block";}
+else{insta.textContent="Instagram";instaNote.style.display="none";}
+}
+const saved=localStorage.getItem('lang');
+if(saved) setLang(saved);
+</script>
+
+</body>
+</html>
