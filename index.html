@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Привет, это Ама!</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{--radius:30px}
+*{box-sizing:border-box}
+
+body{
+margin:0;
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+background:linear-gradient(135deg,
+rgba(200,225,255,.55),
+rgba(200,235,210,.55),
+rgba(245,240,200,.45)
+);
+color:#111;
+}
+
+@media (prefers-color-scheme: dark){
+body{
+background:
+radial-gradient(circle at 20% 0%, rgba(200,225,255,.18), transparent 45%),
+radial-gradient(circle at 80% 10%, rgba(200,235,210,.16), transparent 50%),
+radial-gradient(circle at 50% 85%, rgba(245,240,200,.14), transparent 55%),
+linear-gradient(180deg,#101515,#050707);
+color:#fff;
+}
+}
+
+.card{
+width:100%;
+max-width:420px;
+padding:30px 24px 26px;
+border-radius:var(--radius);
+background:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,.12));
+backdrop-filter:blur(36px) saturate(190%);
+box-shadow:0 60px 120px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.55);
+text-align:center;
+}
+
+@media (prefers-color-scheme: dark){
+.card{
+background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(255,255,255,.04));
+box-shadow:0 60px 120px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.35);
+}
+}
+
+h1{margin:0 0 26px;font-size:30px;font-weight:500}
+
+.lang{
+display:flex;
+justify-content:center;
+gap:8px;
+margin-bottom:38px;
+}
+.lang button{
+padding:6px 14px;
+border-radius:999px;
+border:none;
+background:rgba(0,0,0,.08);
+font-size:13px;
+font-weight:300;
+cursor:pointer;
+opacity:.55;
+}
+.lang button.active{opacity:1}
+
+@media (prefers-color-scheme: dark){
+.lang button{background:rgba(255,255,255,.18)}
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:16px;
+}
+
+.item a{
+text-decoration:none;
+color:inherit;
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.icon{
+width:68px;
+height:68px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+margin-bottom:8px;
+backdrop-filter:blur(22px) saturate(160%);
+box-shadow:0 10px 30px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.35);
+transition:transform .25s;
+}
+
+.item a:hover .icon{transform:scale(1.06)}
+
+.phone{background:#2e7d32}
+.vk{background:#4c75a3}
+.instagram{background:#e1306c}
+.telegram{background:#2aabee}
+.channel{background:#1f8acb}
+.mail{background:#9b8c4a}
+
+.icon img{width:26px;height:26px}
+
+.vk img{
+  width:30px;
+  height:30px;
+}
+
+
+.thanks{
+margin:28px auto 14px;
+}
+.thanks a{
+display:flex;
+gap:10px;
+align-items:center;
+justify-content:center;
+width:100%;
+max-width:320px;
+margin:0 auto;
+padding:14px 0;
+border-radius:999px;
+background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,.15));
+backdrop-filter:blur(28px) saturate(180%);
+box-shadow:0 18px 40px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.55);
+text-decoration:none;
+color:inherit;
+font-size:18px;
+animation:breath 3.2s ease-in-out infinite;
+}
+
+.thanks svg{width:20px;height:20px;fill:#e53935}
+
+@keyframes breath{
+0%,100%{transform:scale(1)}
+50%{transform:scale(1.04)}
+}
+
+.save-contact{
+margin:28px 0 26px;
+font-size:13px;
+opacity:.35;
+}
+
+.save-contact a{
+color:inherit;
+text-decoration:none;
+}
+
+.divider{
+height:1px;
+background:linear-gradient(to right,transparent,rgba(0,0,0,.2),transparent);
+margin:14px 0 16px;
+}
+
+@media (prefers-color-scheme: dark){
+.divider{
+background:linear-gradient(to right,transparent,rgba(255,255,255,.25),transparent);
+}
+}
+
+.footer{font-size:14px;opacity:.8}
+.note{margin-top:6px;font-size:14px;opacity:.7}
+
+.hy-small{font-size:23px}
+
+.emoji{
+position:absolute;
+font-size:24px;
+pointer-events:none;
+z-index:5;
+animation:emojiFloat 2.4s ease-out forwards;
+}
+
+@keyframes emojiFloat{
+0%{opacity:0;transform:translateY(20px) scale(.8)}
+15%{opacity:1}
+100%{opacity:0;transform:translateY(-60px) scale(1.15)}
+}
+
+
+.card.breath-ru{box-shadow:0 0 0 0 rgba(255,200,200,.6)}
+.card.breath-en{box-shadow:0 0 0 0 rgba(200,220,255,.6)}
+.card.breath-hy{box-shadow:0 0 0 0 rgba(255,220,160,.6)}
+
+</style>
+</head>
+
+<body>
+<div class="card">
+
+<h1 id="title">Привет, это Ама!</h1>
+
+<div class="lang">
+<button id="ruBtn" class="active" onclick="setLang('ru')">РУС</button>
+<button id="enBtn" onclick="setLang('en')">ENG</button>
+<button id="hyBtn" onclick="setLang('hy')">ՀԱՅ</button>
+</div>
+
+<div class="grid">
+
+<div class="item"><a href="tel:+79992557949"><div class="icon phone"><img src="icons/phone.svg"></div><span data-ru="Позвонить" data-en="Call" data-hy="Զանգել">Позвонить</span></a></div>
+<div class="item"><a href="https://vk.com/amakalipsis"><div class="icon vk"><img src="icons/vk.svg"></div><span data-ru="ВКонтакте" data-en="VK" data-hy="VK-ի էջը">ВКонтакте</span></a></div>
+<div class="item"><a href="https://instagram.com/amakalipsis"><div class="icon instagram"><img src="icons/instagram.svg"></div><span id="instaLabel">Instagram*</span></a></div>
+<div class="item"><a href="https://t.me/amakalipsis"><div class="icon telegram"><img src="icons/telegram.svg"></div><span data-ru="Телеграм" data-en="Telegram" data-hy="Տելեգրամ">Телеграм</span></a></div>
+<div class="item"><a href="https://t.me/invencia"><div class="icon channel"><img src="icons/channel.svg"></div><span data-ru="Мой канал" data-en="My channel" data-hy="Իմ ալիքը">Мой канал</span></a></div>
+<div class="item"><a href="mailto:amastyle@amakalipsis.ru"><div class="icon mail"><img src="icons/mail.svg"></div><span data-ru="Почта" data-en="Email" data-hy="Փոստ">Почта</span></a></div>
+
+</div>
+
+<div class="thanks">
+<a href="https://tips.yandex.ru/guest/payment/0667430">
+<svg viewBox="0 0 24 24"><path d="M12 21s-7.3-4.4-9.7-8.5C-0.1 8.4 2.3 4 6.5 4c2 0 3.4 1.2 4.5 2.7C12.1 5.2 13.5 4 15.5 4 19.7 4 22.1 8.4 21.7 12.5 19.3 16.6 12 21 12 21z"/></svg>
+<span data-ru="Сказать спасибо" data-en="Say thanks" data-hy="Շնորհակալություն ասել">Сказать спасибо</span>
+</a>
+</div>
+
+<div class="save-contact">
+<a href="amakalipsis.vcf" download
+data-ru="сохранить контакты"
+data-en="save contact"
+data-hy="պահպանել կոնտակտը">сохранить контакты</a>
+</div>
+
+<div class="divider"></div>
+
+<div class="footer">
+<div id="instaNote">* Заблокирован на территории РФ</div>
+<div class="note" id="note"
+data-ru="В других сервисах меня можно найти по нику amakalipsis, не ищите меня в WhatsApp и Viber — там меня точно нет!"
+data-en="You can find me on other services under the nickname amakalipsis. Please don’t look for me on WhatsApp or Viber — I’m definitely not there."
+data-hy="Այլ ծառայություններում ինձ կարող եք գտնել amakalipsis մականունով։ Խնդրում եմ մի փնտրեք ինձ WhatsApp-ում և Viber-ում — այնտեղ ես հաստատ չկամ։">
+</div>
+</div>
+
+</div>
+
+<script>
+function setLang(l){
+localStorage.setItem('lang',l);
+document.querySelectorAll('.lang button').forEach(b=>b.classList.remove('active'));
+document.getElementById(l+'Btn').classList.add('active');
+document.querySelectorAll('[data-'+l+']').forEach(e=>e.textContent=e.dataset[l]);
+
+const title=document.getElementById('title');
+title.classList.remove('hy-small');
+const titles={ru:"Привет, это Ама!",en:"Hi, this is Ama!",hy:"Բարև, ես Արմենն եմ:"};
+title.textContent=titles[l];
+if(l==='hy') title.classList.add('hy-small');
+
+const insta=document.getElementById('instaLabel');
+const note=document.getElementById('instaNote');
+if(l==='ru'){insta.textContent="Instagram*";note.style.display="block";}
+else{insta.textContent="Instagram";note.style.display="none";}
+}
+setLang(localStorage.getItem('lang')||'ru');
+
+const title = document.getElementById('title');
+const card = document.querySelector('.card');
+
+const emojis = ["👋","✨","😊","🌈","🫶","💫","🙌","🌟","❤️","💖","🌸","🌼","🌺","🐱","🐈"];
+
+function spawnEmojis(){
+  const rect = card.getBoundingClientRect();
+  for(let i=0;i<22;i++){
+    const e = document.createElement('div');
+    e.className = 'emoji';
+    e.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    e.style.left = (Math.random()*(rect.width-20)) + 'px';
+    e.style.top  = (Math.random()*(rect.height-20)) + 'px';
+    card.appendChild(e);
+    setTimeout(()=>e.remove(),2400);
+  }
+}
+
+// desktop
+title.addEventListener('dblclick', spawnEmojis);
+
+// mobile – reliable double tap
+let lastTap = 0;
+title.addEventListener('touchstart', () => {
+  const now = Date.now();
+  if(now - lastTap < 350){
+    spawnEmojis();
+  }
+  lastTap = now;
+});
+
+
+// language button easter eggs
+const ruBtn = document.getElementById('ruBtn');
+const enBtn = document.getElementById('enBtn');
+
+function spawnLangEmojis(list){
+  const card = document.querySelector('.card');
+  const rect = card.getBoundingClientRect();
+  for(let i=0;i<16;i++){
+    const e = document.createElement('div');
+    e.className = 'emoji';
+    e.textContent = list[Math.floor(Math.random()*list.length)];
+    e.style.left = (Math.random()*(rect.width-24))+'px';
+    e.style.top  = (Math.random()*(rect.height-24))+'px';
+    card.appendChild(e);
+    setTimeout(()=>e.remove(),2200);
+  }
+}
+
+ruBtn.addEventListener('click', ()=>spawnLangEmojis(["🪆","🪆","🪆","🌸"]));
+enBtn.addEventListener('click', ()=>spawnLangEmojis(["🍔","🍟","🥤"]));
+
+
+const hyBtn = document.getElementById('hyBtn');
+hyBtn.addEventListener('click', ()=>spawnLangEmojis(["🍑","🍑","⛰️","🏔️"]));
+
+
+// subtle vibration
+function vibe(pattern){
+  if(navigator.vibrate) navigator.vibrate(pattern);
+}
+
+// card breath
+function cardBreath(cls){
+  const card=document.querySelector('.card');
+  card.classList.add(cls);
+  setTimeout(()=>card.classList.remove(cls),400);
+}
+
+// hook language buttons
+ruBtn.addEventListener('click',()=>{
+  vibe(15);
+  cardBreath('breath-ru');
+});
+
+enBtn.addEventListener('click',()=>{
+  vibe([8,5,8]);
+  cardBreath('breath-en');
+});
+
+hyBtn.addEventListener('click',()=>{
+  vibe(25);
+  cardBreath('breath-hy');
+});
+
+</script>
+
+</body>
+</html>
